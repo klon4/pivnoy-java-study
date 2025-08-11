@@ -54,13 +54,13 @@ public class RecommendationServiceImplTest {
 
         // todo эта залупа возвращает 3 из-за того, что надо эти ебучие книги и авторов фиксить
         // там столько ёбани, что просто скипаю. Если бы книг, авторов было бы больше и они бы не повторялись - всё ок бы работало
-        assertEquals(authors.size(), 3);
+        assertEquals(3, authors.size());
     }
 
     @Test
-    public void checkRecommendQuote() {
+    public void  checkRecommendQuote() {
         val quotes = recommendationService.recommendQuoteByBook(1);
 
-        assertEquals(quotes.size(), 1);
+        assertEquals(1, quotes.size());
     }
 }
