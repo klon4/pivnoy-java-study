@@ -9,6 +9,7 @@ import ttv.poltoraha.pivka.entity.Quote;
 import ttv.poltoraha.pivka.entity.Reader;
 import ttv.poltoraha.pivka.entity.Reading;
 import ttv.poltoraha.pivka.repository.BookRepository;
+import ttv.poltoraha.pivka.repository.QuoteRepository;
 import ttv.poltoraha.pivka.repository.ReaderRepository;
 import ttv.poltoraha.pivka.service.ReaderService;
 import util.MyUtility;
@@ -19,6 +20,7 @@ import util.MyUtility;
 public class ReaderServiceImpl implements ReaderService {
     private final ReaderRepository readerRepository;
     private final BookRepository bookRepository;
+    private final QuoteRepository quoteRepository;
     @Override
     public void createQuote(String username, Integer book_id, String text) {
         val newQuote = new Quote();
@@ -30,10 +32,10 @@ public class ReaderServiceImpl implements ReaderService {
         newQuote.setText(text);
         newQuote.setReader(reader);
 
-        reader.getQuotes().add(newQuote);
 
-        // todo потенциально лучше сейвить quoteRepository. Чем меньше вложенностей у сохраняемой сущности - тем эффективнее это будет происходить.
-        readerRepository.save(reader);
+        // Лучше вызывать сохранения только цитаты, а не всего читателя, что б мы случайно не получили все цитаты
+        // ПОтому что они в связи один к многим, ленивые и не подгружаються
+        quoteRepository.save(newQuote);
     }
 
     @Override
