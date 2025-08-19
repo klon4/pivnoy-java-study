@@ -16,6 +16,6 @@ public class Tag {
     private Integer id;
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "tag")
     private List<Quote> quotes = new ArrayList<>();
 }

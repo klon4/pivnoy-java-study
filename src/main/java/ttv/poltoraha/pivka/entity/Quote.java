@@ -16,4 +16,7 @@ public class Quote {
     @JoinColumn(name = "book_id")
     private Book book;
     private String text;
+
+    @ManyToOne
+    private Tag tag;
 }
