@@ -14,19 +14,6 @@
                 <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
-        <createTable tableName="quote_tag">
-            <column name="quote_id" type="int">
-                <constraints nullable="false"
-                             foreignKeyName="fk_quote_tag_quote"
-                             references="quote(id)"/>
-            </column>
-            <column name="tag_id" type="int">
-                <constraints nullable="false"
-                             foreignKeyName="fk_quote_tag_tag"
-                             references="tag(id)"/>
-            </column>
-        </createTable>
-        <addPrimaryKey tableName="quote_tag" columnNames="quote_id, tag_id" constraintName="pk_quote_tag"/>
     </changeSet>
 
 </databaseChangeLog>
